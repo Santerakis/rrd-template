@@ -7,26 +7,44 @@ import {PageThree} from "./pages/PageThree";
 import {Error404} from "./pages/Error404";
 import {Page} from "./pages/Page";
 import {dataState} from "../dataState/dataState";
+import {useWindowSize} from "../helpers/useWindowSize";
 
 
 export const Site = () => {
+    const size = useWindowSize()
+
     return (
         <div>
             <div className={styles.header}><h1>HEADER</h1></div>
             <div className={styles.body}>
-                <div className={styles.nav}>
-                    <a href="/page2">Page2 from a_href</a>
-                    <div><NavLink className={({isActive})=>isActive ?styles.active :styles.navLink} to={'/page/0'}>PageOne</NavLink></div>
-                    <div><NavLink className={({isActive})=>isActive ?styles.active :styles.navLink} to={'/page/1'}>PageTwo</NavLink></div>
-                    <div><NavLink className={({isActive})=>isActive ?styles.active :styles.navLink} to={'/page/2'}>PageThree</NavLink></div>
-                    {/*<div><NavLink className={(params)=>params.isActive ?styles.active :styles.navLink} to={'/page1'}>PageOne</NavLink></div>*/}
-                    {/*<div><NavLink className={({isActive})=>isActive ?styles.active :styles.navLink} to={'/page2'}>PageTwo</NavLink></div>*/}
-                </div>
+
+                {size > 991
+                    ? <div className={styles.nav}>
+                        <a href="/page2">Page2 from a_href</a>
+                        <div><NavLink className={({isActive}) => isActive ? styles.active : styles.navLink}
+                                      to={'/page/0'}>PageOne</NavLink></div>
+                        <div><NavLink className={({isActive}) => isActive ? styles.active : styles.navLink}
+                                      to={'/page/1'}>PageTwo</NavLink></div>
+                        <div><NavLink className={({isActive}) => isActive ? styles.active : styles.navLink}
+                                      to={'/page/2'}>PageThree</NavLink></div>
+
+                        <div><NavLink to={'/page/localStorage'}
+                                      className={({isActive}) => isActive ? styles.active : styles.navLink}>LocalStorage</NavLink>
+                        </div>
+
+
+                        {/*<div><NavLink className={(params)=>params.isActive ?styles.active :styles.navLink} to={'/page1'}>PageOne</NavLink></div>*/}
+                        {/*<div><NavLink className={({isActive})=>isActive ?styles.active :styles.navLink} to={'/page2'}>PageTwo</NavLink></div>*/}
+                    </div>
+                    : <div></div>
+                }
+
                 <div className={styles.content}>
                     <Routes>
-                        <Route path={'/'} element={ <Navigate to={'/page1'}/> }/>
+                        <Route path={'/'} element={<Navigate to={'/page1'}/>}/>
 
                         <Route path={'/page/:id'} element={<Page dataState={dataState}/>}/>
+                        <Route path={'/page/localStorage'} element={<LocalStorage/>}/>
                         {/*<Route path={'/page3'} element={<PageThree/>}/>*/}
 
                         <Route path={'/*'} element={<Error404/>}/>
