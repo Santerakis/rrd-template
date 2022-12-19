@@ -8,6 +8,7 @@ import {Error404} from "./pages/Error404";
 import {Page} from "./pages/Page";
 import {dataState} from "../dataState/dataState";
 import {useWindowSize} from "../helpers/useWindowSize";
+import {LocalStorage} from "./pages/LocalStorage";
 
 
 export const Site = () => {
