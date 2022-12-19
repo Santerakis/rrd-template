@@ -13,8 +13,10 @@ export const Page = (props: PropsType) => {
     return (
         <div>
             <Content
-                heading={props.dataState.pages[Number(params.id)].heading}
-                about={props.dataState.pages[Number(params.id)].about}
+                page={props.dataState}
+                route={Number(params.id)}
+                // heading={props.dataState.pages[Number(params.id)].heading}
+                // about={props.dataState.pages[Number(params.id)].about}
             />
             {/*{dataState.pages[1].heading} - import*/}
         </div>
